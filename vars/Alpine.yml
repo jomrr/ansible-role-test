@@ -1,0 +1,5 @@
+---
+# role: ansible-role-test
+# file: vars/Alpine.yml
+
+test_packages: []
