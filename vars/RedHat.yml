@@ -1,0 +1,5 @@
+---
+# role: ansible-role-test
+# file: vars/RedHat.yml
+
+test_packages: []

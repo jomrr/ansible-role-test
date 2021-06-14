@@ -1,0 +1,28 @@
+---
+# role: ansible-role-test
+# file: tasks/main.yml
+
+- name: "Tasks for ansible-role-test"
+  block:
+
+    - name: "Set os_family dependent variables"
+      include_vars: '{{ ansible_os_family }}.yml'
+
+    - name: "Set distribution dependent variables"
+      include_vars: "{{ item }}"
+      vars:
+        params:
+          files:
+            - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml'
+            - '{{ ansible_distribution }}.yml'
+            - '{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml'
+          paths:
+            - 'vars'
+          skip: true
+      loop: "{{ query('first_found', params, errors='ignore') }}"
+
+    - name: "Install packages for ansible-role-test"
+      package:
+        name: "{{ test_packages }}"
+        state: present
+  when: test_role_enabled | bool

@@ -1,0 +1,136 @@
+---
+# role: ansible-role-test
+# file: molecule/default/molecule.yml
+
+dependency:
+  name: galaxy
+  options:
+    requirements-file: requirements.yml
+driver:
+  name: docker
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+platforms:
+  - name: alpine-test
+    image: "jam82/molecule-alpine:latest"
+    command: ""
+    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+  - name: amazon-test
+    image: "jam82/molecule-amazonlinux:latest"
+    command: ""
+    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - name: arch-test
+    image: "jam82/molecule-archlinux:latest"
+    command: ""
+    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - name: centos-test
+    image: "jam82/molecule-centos:latest"
+    command: ""
+    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - name: debian-test
+    image: "jam82/molecule-debian:latest"
+    command: ""
+    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - name: fedora-test
+    image: "jam82/molecule-fedora:latest"
+    command: ""
+    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - name: opensuse-test
+    image: "jam82/molecule-opensuse:15"
+    command: ""
+    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - name: tumbleweed-test
+    image: "jam82/molecule-opensuse:tumbleweed"
+    command: ""
+    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - name: oracle-test
+    image: "jam82/molecule-oraclelinux:latest"
+    command: ""
+    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - name: ubuntu-2004
+    image: "jam82/molecule-ubuntu:20.04"
+    command: ""
+    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - name: ubuntu-test
+    image: "jam82/molecule-ubuntu:latest"
+    command: ""
+    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+provisioner:
+  name: ansible
+  log: true
+  playbooks:
+    prepare: ../resources/playbooks/prepare.yml
+    converge: ../resources/playbooks/converge.yml
+    verify: ../resources/playbooks/verify.yml
+  inventory:
+    group_vars:
+      all:
+        test_role_enabled: true
+verifier:
+  name: ansible
