@@ -1,6 +1,6 @@
-# test-ansible-role
+# ansible-role-testing
 
-![GitHub](https://img.shields.io/github/license/jam82/test-ansible-role) ![GitHub last commit](https://img.shields.io/github/last-commit/jam82/test-ansible-role) ![GitHub issues](https://img.shields.io/github/issues-raw/jam82/test-ansible-role) ![Actions](https://github.com/jam82/test-ansible-role/actions/workflows/molecule.yml/badge.svg)
+![GitHub](https://img.shields.io/github/license/jam82/ansible-role-testing) ![GitHub last commit](https://img.shields.io/github/last-commit/jam82/ansible-role-testing) ![GitHub issues](https://img.shields.io/github/issues-raw/jam82/ansible-role-testing) ![Actions](https://github.com/jam82/ansible-role-testing/actions/workflows/molecule.yml/badge.svg)
 
 **Ansible role for setting up test.**
 
@@ -37,7 +37,7 @@ None.
 
 ```yaml
 ---
-# role: test-ansible-role
+# role: ansible-role-testing
 # play: test
 # file: test.yml
 
@@ -47,7 +47,7 @@ None.
   vars:
     test_role_enabled: true
   roles:
-    - role: test-ansible-role
+    - role: ansible-role-testing
 ```
 
 ## License and Author
@@ -56,7 +56,7 @@ None.
 - Copyright:: 2021, [jam82](https://github.com/jam82/)
 
 Licensed under [MIT License](https://opensource.org/licenses/MIT).
-See [LICENSE](https://github.com/jam82/test-ansible-role/blob/master/LICENSE) file in repository.
+See [LICENSE](https://github.com/jam82/ansible-role-testing/blob/master/LICENSE) file in repository.
 
 ## References
 
