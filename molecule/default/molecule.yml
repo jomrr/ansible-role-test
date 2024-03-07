@@ -2,10 +2,6 @@
 # name: jam82.ansible-role-test
 # file: molecule/default/molecule.yml
 
-# Note on command and entrypoint = ~ ... :/ WTF???
-# Using the pre-built container defaults, when nothing is specified would be
-# straight forward ... not some sleep infinite shell command.
-
 dependency:
   name: galaxy
   requirements-file: meta/requirements.yml
@@ -31,8 +27,8 @@ provisioner:
   log: true
   name: ansible
   playbooks:
-    converge: create.yml
-    verify: verify.yml
+    converge: ../resources/playbooks/converge.yml
+    verify: ../resources/playbooks/verify.yml
 scenario:
   name: default
 verifier:
