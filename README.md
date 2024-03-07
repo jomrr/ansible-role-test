@@ -1,63 +1,76 @@
-# ansible-role-testing
+# Ansible role test
 
-![GitHub](https://img.shields.io/github/license/jam82/ansible-role-testing) ![GitHub last commit](https://img.shields.io/github/last-commit/jam82/ansible-role-testing) ![GitHub issues](https://img.shields.io/github/issues-raw/jam82/ansible-role-testing) ![Actions](https://github.com/jam82/ansible-role-testing/actions/workflows/molecule.yml/badge.svg)
+![GitHub](https://img.shields.io/github/license/jam82/ansible-role-test) ![GitHub last commit](https://img.shields.io/github/last-commit/jam82/ansible-role-test) ![GitHub issues](https://img.shields.io/github/issues-raw/jam82/ansible-role-test)
 
 **Ansible role for setting up test.**
 
-## Supported Platforms
+## Description
 
-- Alpine
-- Archlinux
-- CentOS
-- Debian
-- Fedora
-- OpenSuse Leap, Tumbleweed
-- OracleLinux
-- Ubuntu
+This Ansible role installs and configures test on supported platforms.
 
-## Requirements
+## Prerequisites
 
-Ansible 2.9 or higher.
+This role has no special prerequisites.
 
-## Variables
+### System packages (Fedora)
 
-Variables and defaults for this role.
+- `python3` (Python 3.8 or later)
 
-### defaults/main.yml
+### Python (requirements.txt)
+
+- ansible >= 2.15
+
+## Dependencies (requirements.yml)
 
 ```yaml
-test_role_enabled: false
+collections []
+
+roles:
 ```
 
-## Dependencies
+## Supported Platforms
 
-None.
+| OS Family | Distribution | Version | Container Image |
+|-----------|--------------|---------|-----------------|
+| RedHat | AlmaLinux | 8 | [jam82/molecule-almalinux:8]( https://hub.docker.com/r/jam82/molecule-almalinux ) |
+| | | 9 | [jam82/molecule-almalinux:9]( https://hub.docker.com/r/jam82/molecule-almalinux ) |
+| Alpine | Alpine | 3.18 | [jam82/molecule-alpine:3.18]( https://hub.docker.com/r/jam82/molecule-alpine ) |
+| | | 3.19 | [jam82/molecule-alpine:3.19]( https://hub.docker.com/r/jam82/molecule-alpine ) |
+| Debian | Debian | 11 | [jam82/molecule-debian:11]( https://hub.docker.com/r/jam82/molecule-debian ) |
+| | | 12 | [jam82/molecule-debian:12]( https://hub.docker.com/r/jam82/molecule-debian ) |
+| RedHat | Fedora | 39 | [jam82/molecule-fedora:39]( https://hub.docker.com/r/jam82/molecule-fedora ) |
+| | | 40 | [jam82/molecule-fedora:40]( https://hub.docker.com/r/jam82/molecule-fedora ) |
+| | | rawhide | [jam82/molecule-fedora:rawhide]( https://hub.docker.com/r/jam82/molecule-fedora ) |
+| Debian | Ubuntu | 20.04 | [jam82/molecule-ubuntu:20.04]( https://hub.docker.com/r/jam82/molecule-ubuntu ) |
+| | | 22.04 | [jam82/molecule-ubuntu:22.04]( https://hub.docker.com/r/jam82/molecule-ubuntu ) |
+| | | 24.04 | [jam82/molecule-ubuntu:24.04]( https://hub.docker.com/r/jam82/molecule-ubuntu ) |
+
+## Role Variables
+
+No role default variables specified, see [defaults/main.yml](defaults/main.yml).
 
 ## Example Playbook
 
+Example playbooks(s) that show how to use this role.
+
+## Simple example playbook
+
+A simple default example playbook for using jam82.test.
 ```yaml
 ---
-# role: ansible-role-testing
-# play: test
-# file: test.yml
+# name: "jam82.test"
+# file: "playbook_test.yml"
 
-- hosts: all
-  become: true
+- name: "PLAYBOOK | test"
+  hosts: all
   gather_facts: true
-  vars:
-    test_role_enabled: true
   roles:
-    - role: ansible-role-testing
+    - role: "jam82.test"
 ```
 
-## License and Author
+## License, Author(s) and Contributors
 
-- Author:: [jam82](https://github.com/jam82/)
-- Copyright:: 2021, [jam82](https://github.com/jam82/)
+This role is published under the [MIT License](LICENSE)
 
-Licensed under [MIT License](https://opensource.org/licenses/MIT).
-See [LICENSE](https://github.com/jam82/ansible-role-testing/blob/master/LICENSE) file in repository.
-
-## References
-
-- [ArchWiki](https://wiki.archlinux.org/)
+and was initially created in 2019 by Jonas Mauer (@jam82).
+---
