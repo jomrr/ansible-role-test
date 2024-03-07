@@ -14,8 +14,8 @@ driver:
   name: podman
 lint: set -e; ansible-lint
 platforms:
-  - command: '~'
-    entrypoint: '~'
+  - command: null
+    entrypoint: null
     image: docker.io/${uns:-jam82}/molecule-${img:-fedora}:${tag:-latest}
     name: test
     pre_build_image: true
