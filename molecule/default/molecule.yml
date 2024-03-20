@@ -5,7 +5,6 @@
 dependency:
   name: galaxy
   requirements-file: meta/requirements.yml
-  role-file: meta/requirements.yml
 driver:
   name: podman
 lint: set -e; ansible-lint
@@ -15,13 +14,12 @@ platforms:
     image: docker.io/${uns:-jam82}/molecule-${img:-fedora}:${tag:-latest}
     name: test
     pre_build_image: true
+    systemd: true
 provisioner:
   config_options:
     defaults:
-      callback_whitelist: profile_tasks
+      callback_whitelist: profile_tasks, timer, yaml
       interpreter_python: auto_silent
-      timer: null
-      yaml: null
     ssh_connection:
       pipelining: true
   log: true

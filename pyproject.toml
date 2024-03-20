@@ -4,7 +4,7 @@ version = "0.0.0"
 description = "Ansible role for setting up test."
 authors = ["Jonas Mauer"]
 license = "MIT"
-keywords = []
+keywords = ["ansible", "roles", "test"]
 repository = "https://github.com/jam82/ansible-role-test"
 
 [tool.commitizen]
