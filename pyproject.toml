@@ -5,7 +5,7 @@ description = "Ansible role for setting up test."
 authors = ["Jonas Mauer"]
 license = "MIT"
 keywords = ["ansible", "roles", "test"]
-repository = "https://github.com/jam82/ansible-role-test"
+repository = "https://github.com/jomrr/ansible-role-test"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
