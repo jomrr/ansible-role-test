@@ -1,5 +1,5 @@
 ---
-# name: jam82.ansible-role-test
+# name: jomrr.ansible-role-test
 # file: molecule/default/molecule.yml
 
 dependency:
@@ -11,7 +11,7 @@ lint: set -e; ansible-lint
 platforms:
   - command: null
     entrypoint: null
-    image: docker.io/${uns:-jam82}/molecule-${img:-fedora}:${tag:-latest}
+    image: docker.io/${uns:-jomrr}/molecule-${img:-fedora}:${tag:-latest}
     name: test
     pre_build_image: true
     systemd: true
