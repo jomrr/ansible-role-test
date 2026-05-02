@@ -1,8 +1,7 @@
----
-# name: jomrr.ansible-role-test
+# role: jomrr.test
 # file: molecule/resources/playbooks/verify.yml
 
-- name: "PLAYBOOK | Verify"
+- name: "TEST | Verify"
   hosts: all
   gather_facts: false
   tasks:

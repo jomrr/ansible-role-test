@@ -1,118 +1,63 @@
 ---
-# name: jomrr.ansible-role-test
+# role: jomrr.test
 # file: molecule/all/molecule.yml
 
 dependency:
-  name: galaxy
-  requirements-file: meta/requirements.yml
+  name: "galaxy"
+  options:
+    requirements-file: "meta/requirements.yml"
 driver:
-  name: podman
-lint: set -e; ansible-lint
+  name: "podman"
 provisioner:
+  name: "ansible"
   config_options:
     defaults:
-      callback_whitelist: profile_tasks, timer, yaml
-      interpreter_python: auto_silent
+      forks: 8
+      interpreter_python: "auto_silent"
+      callbacks_enabled: "ansible.posix.profile_tasks,ansible.posix.timer"
+      callback_result_format: "yaml"
     ssh_connection:
       pipelining: true
   log: true
-  name: ansible
   playbooks:
-    converge: converge.yml
-    prepare: prepare.yml
-    verify: verify.yml
-scenario:
-  name: all
+    converge: "../resources/playbooks/converge.yml"
+    verify: "../resources/playbooks/verify.yml"
 verifier:
-  name: ansible
+  name: "ansible"
+scenario:
+  name: "all"
 platforms:
-  - name: almalinux-8-test
-    image: "docker.io/jomrr/molecule-almalinux:8"
+  - name: almalinux-latest-test
+    image: "docker.io/jomrr/molecule-almalinux:latest"
     pre_build_image: true
-    entrypoint: null
-    command: null
+    override_command: false
     systemd: true
-  - name: almalinux-9-test
-    image: "docker.io/jomrr/molecule-almalinux:9"
+  - name: alpine-latest-test
+    image: "docker.io/jomrr/molecule-alpine:latest"
     pre_build_image: true
-    entrypoint: null
-    command: null
+    override_command: false
+  - name: debian-latest-test
+    image: "docker.io/jomrr/molecule-debian:latest"
+    pre_build_image: true
+    override_command: false
     systemd: true
-  - name: alpine-3.18-test
-    image: "docker.io/jomrr/molecule-alpine:3.18"
+  - name: fedora-latest-test
+    image: "docker.io/jomrr/molecule-fedora:latest"
     pre_build_image: true
-    entrypoint: null
-    command: null
+    override_command: false
     systemd: true
-  - name: alpine-3.19-test
-    image: "docker.io/jomrr/molecule-alpine:3.19"
+  - name: opensuse-leap-latest-test
+    image: "docker.io/jomrr/molecule-opensuse-leap:latest"
     pre_build_image: true
-    entrypoint: null
-    command: null
+    override_command: false
     systemd: true
-  - name: archlinux-latest-test
-    image: "docker.io/jomrr/molecule-archlinux:latest"
+  - name: opensuse-tumbleweed-latest-test
+    image: "docker.io/jomrr/molecule-opensuse-tumbleweed:latest"
     pre_build_image: true
-    entrypoint: null
-    command: null
+    override_command: false
     systemd: true
-  - name: debian-11-test
-    image: "docker.io/jomrr/molecule-debian:11"
+  - name: ubuntu-latest-test
+    image: "docker.io/jomrr/molecule-ubuntu:latest"
     pre_build_image: true
-    entrypoint: null
-    command: null
-    systemd: true
-  - name: debian-12-test
-    image: "docker.io/jomrr/molecule-debian:12"
-    pre_build_image: true
-    entrypoint: null
-    command: null
-    systemd: true
-  - name: debian-13-test
-    image: "docker.io/jomrr/molecule-debian:13"
-    pre_build_image: true
-    entrypoint: null
-    command: null
-    systemd: true
-  - name: fedora-39-test
-    image: "docker.io/jomrr/molecule-fedora:39"
-    pre_build_image: true
-    entrypoint: null
-    command: null
-    systemd: true
-  - name: fedora-40-test
-    image: "docker.io/jomrr/molecule-fedora:40"
-    pre_build_image: true
-    entrypoint: null
-    command: null
-    systemd: true
-  - name: fedora-rawhide-test
-    image: "docker.io/jomrr/molecule-fedora:rawhide"
-    pre_build_image: true
-    entrypoint: null
-    command: null
-    systemd: true
-  - name: opensuse-leap-15-test
-    image: "docker.io/jomrr/molecule-opensuse leap:15"
-    pre_build_image: true
-    entrypoint: null
-    command: null
-    systemd: true
-  - name: ubuntu-20.04-test
-    image: "docker.io/jomrr/molecule-ubuntu:20.04"
-    pre_build_image: true
-    entrypoint: null
-    command: null
-    systemd: true
-  - name: ubuntu-22.04-test
-    image: "docker.io/jomrr/molecule-ubuntu:22.04"
-    pre_build_image: true
-    entrypoint: null
-    command: null
-    systemd: true
-  - name: ubuntu-24.04-test
-    image: "docker.io/jomrr/molecule-ubuntu:24.04"
-    pre_build_image: true
-    entrypoint: null
-    command: null
+    override_command: false
     systemd: true
