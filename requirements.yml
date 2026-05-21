@@ -4,8 +4,8 @@
 
 collections:
   - name: ansible.posix
-  - name: jomrr.dev
-    src: git+https://github.com/jomrr/ansible-collection-dev.git
+  - name: git+https://github.com/jomrr/ansible-collection-dev.git
+    type: git
     version: main
 
 roles: []
