@@ -1,0 +1,111 @@
+---
+# role: test
+# file: .github/workflows/dev-push-validate.yml
+
+name: dev push validate
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  molecule-default:
+    name: Molecule ${{ matrix.name }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        include:
+          - name: test-almalinux-latest
+            uns: jomrr
+            img: almalinux
+            tag: latest
+          - name: test-alpine-latest
+            uns: jomrr
+            img: alpine
+            tag: latest
+          - name: test-debian-latest
+            uns: jomrr
+            img: debian
+            tag: latest
+          - name: test-fedora-latest
+            uns: jomrr
+            img: fedora
+            tag: latest
+          - name: test-opensuse-leap-latest
+            uns: jomrr
+            img: opensuse-leap
+            tag: latest
+          - name: test-opensuse-tumbleweed-latest
+            uns: jomrr
+            img: opensuse-tumbleweed
+            tag: latest
+          - name: test-ubuntu-latest
+            uns: jomrr
+            img: ubuntu
+            tag: latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v8
+        with:
+          enable-cache: true
+
+      - name: Prepare public Git dependencies
+        run: |
+          set -euo pipefail
+          git config --global url."https://github.com/".insteadOf "git+ssh://github.com/"
+          git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+
+      - name: Install role requirements
+        run: |
+          set -euo pipefail
+          if [ -f requirements.yml ]; then
+            uvx --from ansible-core ansible-galaxy collection install -r requirements.yml
+          fi
+          if [ -f meta/requirements.yml ]; then
+            uvx --from ansible-core ansible-galaxy collection install -r meta/requirements.yml
+          fi
+
+      - name: Show Podman environment
+        run: |
+          set -euo pipefail
+          podman --version
+          podman info
+
+      - name: Run Molecule default scenario
+        run: |
+          set -euo pipefail
+          export uns="${{ matrix.uns }}"
+          export img="${{ matrix.img }}"
+          export tag="${{ matrix.tag }}"
+          uvx \
+            --from molecule \
+            --with ansible-core \
+            --with ansible-lint \
+            --with "molecule-plugins[podman]" \
+            molecule test \
+            -s "default" \
+            --skip dependency

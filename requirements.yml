@@ -1,0 +1,11 @@
+---
+# role: test
+# file: requirements.yml
+
+collections:
+  - name: ansible.posix
+  - name: jomrr.dev
+    src: git+ssh://github.com/jomrr/ansible-collection-dev.git
+    version: main
+
+roles: []

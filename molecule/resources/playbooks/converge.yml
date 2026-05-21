@@ -1,4 +1,4 @@
-# role: jomrr.test
+# role: test
 # file: molecule/resources/playbooks/converge.yml
 
 - name: "TEST | Converge"

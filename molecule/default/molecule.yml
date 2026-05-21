@@ -1,5 +1,5 @@
 ---
-# role: jomrr.test
+# role: test
 # file: molecule/default/molecule.yml
 
 dependency:

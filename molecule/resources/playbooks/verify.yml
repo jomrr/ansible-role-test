@@ -1,4 +1,4 @@
-# role: jomrr.test
+# role: test
 # file: molecule/resources/playbooks/verify.yml
 
 - name: "TEST | Verify"

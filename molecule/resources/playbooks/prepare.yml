@@ -1,8 +1,0 @@
-# role: jomrr.test
-# file: molecule/resources/playbooks/prepare.yml
-
-- name: "TEST | Prepare"
-  hosts: all
-  become: true
-  gather_facts: false
-  tasks: []

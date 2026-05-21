@@ -1,6 +1,6 @@
 ---
-# role: jomrr.test
-# file: molecule/all/molecule.yml
+# role: test
+# file: molecule/dev/molecule.yml
 
 dependency:
   name: "galaxy"
@@ -25,7 +25,7 @@ provisioner:
 verifier:
   name: "ansible"
 scenario:
-  name: "all"
+  name: "dev"
 platforms:
   - name: almalinux-latest-test
     image: "docker.io/jomrr/molecule-almalinux:latest"
