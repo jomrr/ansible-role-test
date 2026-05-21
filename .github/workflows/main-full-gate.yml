@@ -1,16 +1,15 @@
 ---
 # role: test
-# file: .github/workflows/dev-push-validate.yml
+# file: .github/workflows/main-full-gate.yml
 
-name: dev push validate
+name: main full gate
 
 on:
   push:
     branches:
-      - dev
+      - main
   pull_request:
     branches:
-      - dev
       - main
   workflow_dispatch:
 
@@ -22,8 +21,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  molecule-default:
-    name: Molecule ${{ matrix.name }}
+  molecule-full:
+    name: Molecule full ${{ matrix.name }}
     runs-on: ubuntu-24.04
     timeout-minutes: 45
 
