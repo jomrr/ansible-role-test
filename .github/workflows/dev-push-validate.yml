@@ -68,16 +68,9 @@ jobs:
           persist-credentials: false
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@v8
+        uses: astral-sh/setup-uv@v8.1.0
         with:
           enable-cache: true
-
-      - name: Prepare public Git dependencies
-        run: |
-          set -euo pipefail
-          git config --global url."https://github.com/".insteadOf "git+ssh://github.com/"
-          git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
-          git config --global url."https://github.com/".insteadOf "git@github.com:"
 
       - name: Install role requirements
         run: |
