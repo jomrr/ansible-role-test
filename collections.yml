@@ -1,11 +1,9 @@
 ---
 # role: test
-# file: requirements.yml
+# file: collections.yml
 
 collections:
   - name: ansible.posix
   - name: git+https://github.com/jomrr/ansible-collection-dev.git
     type: git
     version: main
-
-roles: []

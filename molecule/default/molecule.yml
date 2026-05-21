@@ -3,9 +3,15 @@
 # file: molecule/default/molecule.yml
 
 dependency:
-  name: "galaxy"
-  options:
-    requirements-file: "requirements.yml"
+  name: "shell"
+  command: |-
+    set -eu
+    if [ -f requirements.yml ]; then
+      ansible-galaxy role install -fr requirements.yml
+    fi
+    if [ -f collections.yml ]; then
+      ansible-galaxy collection install -fr collections.yml
+    fi
 driver:
   name: "podman"
 provisioner:

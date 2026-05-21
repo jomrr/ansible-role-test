@@ -9,8 +9,8 @@ Ansible role for setting up test.
 ```yaml
 collections:
   - name: ansible.posix
-  - name: jomrr.dev
-    src: git+ssh://github.com/jomrr/ansible-collection-dev.git
+  - name: git+https://github.com/jomrr/ansible-collection-dev.git
+    type: git
     version: main
 ```
 
