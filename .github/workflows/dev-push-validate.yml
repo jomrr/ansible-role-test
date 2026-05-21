@@ -63,7 +63,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           persist-credentials: false
 
@@ -71,16 +71,6 @@ jobs:
         uses: astral-sh/setup-uv@v8.1.0
         with:
           enable-cache: true
-
-      - name: Install role requirements
-        run: |
-          set -euo pipefail
-          if [ -f requirements.yml ]; then
-            uvx --from ansible-core ansible-galaxy collection install -r requirements.yml
-          fi
-          if [ -f meta/requirements.yml ]; then
-            uvx --from ansible-core ansible-galaxy collection install -r meta/requirements.yml
-          fi
 
       - name: Show Podman environment
         run: |
@@ -100,5 +90,4 @@ jobs:
             --with ansible-lint \
             --with "molecule-plugins[podman]" \
             molecule test \
-            -s "default" \
-            --skip dependency
+            -s "default"
