@@ -1,6 +1,6 @@
 # Ansible Role: test
 
-![GitHub](https://img.shields.io/github/license/jomrr/ansible-role-test) ![GitHub last commit](https://img.shields.io/github/last-commit/jomrr/ansible-role-test) ![GitHub issues](https://img.shields.io/github/issues-raw/jomrr/ansible-role-test)
+![GitHub](https://img.shields.io/github/license/jomrr/ansible-role-test) ![GitHub last commit](https://img.shields.io/github/last-commit/jomrr/ansible-role-test) ![GitHub issues](https://img.shields.io/github/issues-raw/jomrr/ansible-role-test) [![dev](https://img.shields.io/github/actions/workflow/status/jomrr/ansible-role-test/dev.yml?branch=dev&event=push&label=dev)](https://github.com/jomrr/ansible-role-test/actions/workflows/dev.yml?query=branch%3Adev) [![main](https://img.shields.io/github/actions/workflow/status/jomrr/ansible-role-test/main.yml?branch=main&event=push&label=main)](https://github.com/jomrr/ansible-role-test/actions/workflows/main.yml?query=branch%3Amain)
 
 Ansible role for setting up test.
 
