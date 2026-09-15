@@ -1,11 +1,11 @@
+---
 # role: test
 # file: molecule/resources/playbooks/verify.yml
 
-- name: "TEST | Verify"
+- name: TEST | Verify CI demonstration
   hosts: all
   gather_facts: false
   tasks:
-    - name: "Assert true"
-      ansible.builtin.assert:
-        that: "true"
-        fail_msg: "This should never fail"
+    - name: TEST | Report completion of the no-op scenario
+      ansible.builtin.debug:
+        msg: "CI demonstration completed; this role manages no application."

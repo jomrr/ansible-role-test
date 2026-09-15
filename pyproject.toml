@@ -1,16 +1,33 @@
 [project]
 name = "test"
 version = "0.0.0"
-description = "Ansible role for setting up test."
-authors = ["Jonas Mauer"]
+description = "Test role for demonstrating generated Ansible CI workflows."
+requires-python = ">=3.12"
+authors = [
+  { name = "Jonas Mauer" },
+]
 license = "MIT"
 keywords = ["ansible", "role", "test"]
-repository = "https://github.com/jomrr/ansible-role-test"
+
+[project.urls]
+Repository = "https://github.com/jomrr/ansible-role-test"
+
+[tool.uv]
+package = false
+
+[dependency-groups]
+ansible = [
+  "ansible-core==2.20.*",
+  "ansible-lint==26.*",
+]
+
+podman = [
+  "molecule==26.*",
+  "molecule-plugins[podman]==25.*",
+]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.0.0"
-tag_format = "v$version"
 
 [tool.semantic_release]
 branch = "main"
@@ -22,12 +39,3 @@ tag_format = "v{version}"
 version_toml = [
     "pyproject.toml:project.version",
 ]
-
-[tool.tox]
-envlist = ["lint"]
-
-[tool.tox.env.lint]
-description = "Lint code"
-skip_install = true
-deps = ["ansible-lint"]
-commands = [["ansible-lint", "--offline"]]
