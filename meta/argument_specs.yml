@@ -1,0 +1,15 @@
+---
+# role: test
+# file: meta/argument_specs.yml
+
+argument_specs:
+  main:
+    short_description: Test role for demonstrating generated Ansible CI workflows.
+    options:
+      test_role_enabled:
+        type: bool
+        required: false
+        default: false
+        description:
+          - Enable the demonstration tasks that load platform variables and pass an empty
+            package list to the package module.

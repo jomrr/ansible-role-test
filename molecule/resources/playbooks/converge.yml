@@ -1,7 +1,8 @@
+---
 # role: test
 # file: molecule/resources/playbooks/converge.yml
 
-- name: "TEST | Converge"
+- name: "Molecule | converge | test"
   hosts: all
   gather_facts: true
   roles:

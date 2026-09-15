@@ -1,24 +1,22 @@
 ---
-# role: ansible-role-test
+# role: test
 # file: tasks/main.yml
 
-- name: "Tasks for ansible-role-test"
-  when: test_role_enabled | bool
+- name: TEST | Run demonstration tasks
+  when: test_role_enabled
   block:
-    - name: "Set distribution dependent variables"
-      ansible.builtin.include_vars: "{{ item }}"
+    - name: TEST | Load platform settings
+      ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', __test_platform_files) }}"
       vars:
-        params:
+        __test_platform_files:
           files:
-            - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-            - "{{ ansible_distribution }}.yml"
-            - "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
-            - "{{ ansible_os_family }}.yml"
+            - "{{ ansible_facts.os_family }}.yml"
           paths:
-            - 'vars'
-          skip: true
-      loop: "{{ query('first_found', params, errors='ignore') }}"
-    - name: "Install packages for ansible-role-test"
+            - "{{ role_path }}/vars"
+
+    - name: TEST | Demonstrate package management with an empty list
+      become: true
+      become_user: root
       ansible.builtin.package:
-        name: "{{ test_packages }}"
+        name: "{{ __test_packages }}"
         state: present

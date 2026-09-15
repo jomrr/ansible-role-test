@@ -3,15 +3,9 @@
 # file: molecule/default/molecule.yml
 
 dependency:
-  name: "shell"
-  command: |-
-    set -eu
-    if [ -f requirements.yml ]; then
-      ansible-galaxy role install -fr requirements.yml
-    fi
-    if [ -f collections.yml ]; then
-      ansible-galaxy collection install -fr collections.yml
-    fi
+  name: "galaxy"
+  options:
+    requirements-file: "${MOLECULE_PROJECT_DIRECTORY}/collections.yml"
 driver:
   name: "podman"
 provisioner:
@@ -20,8 +14,10 @@ provisioner:
     defaults:
       forks: 8
       interpreter_python: "auto_silent"
+      allow_world_readable_tmpfiles: true
       callbacks_enabled: "ansible.posix.profile_tasks,ansible.posix.timer"
       callback_result_format: "yaml"
+      remote_tmp: "/tmp/.ansible/tmp"
     ssh_connection:
       pipelining: true
   log: true
@@ -37,4 +33,4 @@ platforms:
     image: "docker.io/${uns:-jomrr}/molecule-${img:-fedora}:${tag:-latest}"
     pre_build_image: true
     override_command: false
-    systemd: true
+    systemd: "true"

@@ -1,5 +1,5 @@
 ---
-# role: ansible-role-test
+# role: test
 # file: vars/Debian.yml
 
-test_packages: []
+__test_packages: []
